@@ -9,27 +9,32 @@ module.exports = {
                 .setDescription('Select a command')
                 .setRequired(true)
                 .addChoices(
-                    { name: 'ping', value: 'ping' },
-                    { name: 'guide', value: 'guide' },
-                    { name: 'recipe', value: 'recipe' },
-                    { name: 'reload', value: 'reload' },
-                    { name: 'gif', value: 'gif' },
+                    { name: 'clear', value: 'clear' },
+					{ name: 'exchange', value: 'exchange' },
                     { name: 'echo', value: 'echo' },
+                    { name: 'gif', value: 'gif' },
+                    // { name: 'guide', value: 'guide' },
+					{ name: 'magic8ball', value: 'magic8ball' },
                     { name: 'messages', value: 'messages' },
                     { name: 'news', value: 'news' },
-                    { name: 'play', value: 'play' },
-                    { name: 'skip', value: 'skip' },
                     { name: 'pause', value: 'pause' },
-                    { name: 'resume', value: 'resume' },
-                    { name: 'stop', value: 'stop' },
+                    { name: 'ping', value: 'ping' },
+                    { name: 'play', value: 'play' },
                     { name: 'queue', value: 'queue' },
-                    { name: 'remove', value: 'remove' },
-                    { name: 'clear', value: 'clear' },
-                    { name: 'server', value: 'server' },
-                    { name: 'user', value: 'user' },
 					{ name: 'quiz', value: 'quiz' },
-					{ name: 'magic8ball', value: 'magic8ball' },
-					{ name: 'sayings', value: 'sayings' }
+                    { name: 'recipe', value: 'recipe' },
+                    { name: 'remove', value: 'remove' },
+                    { name: 'reload', value: 'reload' },
+                    { name: 'resume', value: 'resume' },
+					{ name: 'sayings', value: 'sayings' },
+                    { name: 'server', value: 'server' },
+                    { name: 'skip', value: 'skip' },
+                    { name: 'stop', value: 'stop' },
+					{ name: 'spin', value: 'spin' },
+                    { name: 'user', value: 'user' },
+					{ name: 'volume', value: 'volume' },
+					{ name: 'volup', value: 'volup' },
+					{ name: 'voldown', value: 'voldown' },
                 )),
     async execute(interaction) {
         const command = interaction.options.getString('command');
@@ -48,18 +53,18 @@ Must be in the same voice channel as me
 
 For detailed information about a command, use: /guide <command>.
 `
-            },
-            guide: {
-                title: 'guide',
-                description: `
-The \`guide\` command guides you find information about the available commands and how to use them.
-**Arguments**
-You don't need to provide any arguments for this command!
-**Requirements**
-None
+//             },
+//             guide: {
+//                 title: 'guide',
+//                 description: `
+// The \`guide\` command guides you find information about the available commands and how to use them.
+// **Arguments**
+// You don't need to provide any arguments for this command!
+// **Requirements**
+// None
 
-For detailed information about a command, use: /guide <command>.
-`
+// For detailed information about a command, use: /guide <command>.
+// `
             },
             recipe: {
                 title: 'recipe',
@@ -309,6 +314,59 @@ The \`spin\` command lets Borobot spin the wheel for you with an immidiate answe
 You don't need to provide any arguments for this command!
 **Requirements**
 None
+
+For detailed information about a command, use: /guide <command>.
+`
+
+},
+user: {
+	title: 'user',
+	description: `
+The \`exchange\` command allows users to convert currencies easily.
+**Arguments**
+You don't need to provide any arguments for this command!
+**Requirements**
+None
+
+For detailed information about a command, use: /guide <command>.
+`
+
+},
+user: {
+	title: 'user',
+	description: `
+The \`volume\` command sets the volume to a specified level.
+**Arguments**
+Level: The desired volume level (0-200).
+**Requirements**
+Must be in a voice channel
+A music must be currently playing
+
+For detailed information about a command, use: /guide <command>.
+`
+},
+user: {
+	title: 'user',
+	description: `
+The \`volup\` command increases the volume of the currently playing audio.
+**Arguments**
+You don't need to provide any arguments for this command!
+**Requirements**
+Must be in a voice channel
+A music must be currently playing
+
+For detailed information about a command, use: /guide <command>.
+`
+},
+user: {
+	title: 'user',
+	description: `
+The \`voldown\` command decreases the volume of the currently playing audio.
+**Arguments**
+You don't need to provide any arguments for this command!
+**Requirements**
+Must be in a voice channel
+A music must be currently playing
 
 For detailed information about a command, use: /guide <command>.
 `

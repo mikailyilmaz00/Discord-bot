@@ -12,7 +12,7 @@ module.exports = {
 			return;
 		}
 
-		// 🛠️ Cooldown system (Moved inside execute function)
+		// 🛠️ cooldown system (Moved inside execute function)
 		const { cooldowns } = interaction.client;
 		if (!cooldowns.has(command.data.name)) {
 			cooldowns.set(command.data.name, new Collection());
@@ -20,7 +20,7 @@ module.exports = {
 
 		const now = Date.now();
 		const timestamps = cooldowns.get(command.data.name);
-		const defaultCooldownDuration = 3; // Default cooldown in seconds
+		const defaultCooldownDuration = 3; // default cooldown in seconds
 		const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1_000;
 
 		if (timestamps.has(interaction.user.id)) {

@@ -8,7 +8,8 @@ const {
     joinVoiceChannel, 
     createAudioPlayer, 
     createAudioResource, 
-    AudioPlayerStatus 
+    AudioPlayerStatus, 
+    createAudioResourceOptions 
 } = require("@discordjs/voice");
 const ytdl = require("@distube/ytdl-core");
 
@@ -24,13 +25,21 @@ const client = new Client({
 let queue = [];
 let player = createAudioPlayer();
 let connection = null;
+let volume = 1.0; // 1.0 == 100%
 
-// When the bot is ready
+const setVolume = (newVolume) => {
+    volume = Math.max(0, Math.min(newVolume, 2));
+    if (player.state.status === AudioPlayerStatus.Playing) {
+        const resource = player.state.resource;
+        resource.volume.setVolume(volume);
+    }
+};
+
 client.once("ready", () => {
     console.log("✅ Borobot is online!");
 });
 
-// Play the next song in the queue
+// play the next song in the queue
 const playNext = () => {
     if (queue.length === 0) {
         connection.destroy();
@@ -42,15 +51,14 @@ const playNext = () => {
     const stream = ytdl(song, { 
         filter: "audioonly",
         highWaterMark: 1 << 25 });
-    const resource = createAudioResource(stream);
+    const resource = createAudioResource(stream, { inlineVolume: true });
+    resource.volume.setVolume(volume);
 
     player.play(resource);
 };
 
-// Handle commands
-
+// handles commands
 client.on("messageCreate", async (message) => {
-
     if (!message.content.startsWith("!")) return;
 
     const args = message.content.split(" ");
@@ -90,7 +98,6 @@ client.on("messageCreate", async (message) => {
                 message.reply(`🎶 Added to queue: ${songName}`);
             }
             break;
-            
 
         case "!skip":
             if (queue.length > 0) {
@@ -143,6 +150,25 @@ client.on("messageCreate", async (message) => {
         case "!clear":
             queue = [];
             message.reply("🗑 Queue has been cleared.");
+            break;
+
+        case "!volume":
+            if (!args[1] || isNaN(args[1])) {
+                return message.reply("⚠️ You need to provide a valid volume level (0 to 200).");
+            }
+            const newVolume = parseFloat(args[1]) / 100;
+            setVolume(newVolume);
+            message.reply(`🔊 Volume set to ${args[1]}%`);
+            break;
+
+        case "!volup":
+            setVolume(volume + 0.2);
+            message.reply(`🔊 Volume increased to ${(volume * 100).toFixed(0)}%`);
+            break;
+
+        case "!voldown":
+            setVolume(volume - 0.2);
+            message.reply(`🔊 Volume decreased to ${(volume * 100).toFixed(0)}%`);
             break;
 
         default:
