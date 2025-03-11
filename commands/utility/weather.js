@@ -15,7 +15,6 @@ module.exports = {
         const location = interaction.options.getString('location');
 
         try {
-            // Get the latitude and longitude for the location
             const geocodeURL = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${weatherKEY}`;
             const geocodeResponse = await axios.get(geocodeURL);
 
@@ -25,8 +24,7 @@ module.exports = {
 
             const { lat, lon } = geocodeResponse.data[0];
 
-            // Get the weather for the location using the correct endpoint
-            const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherKEY}&units=metric`; // Use 'units=metric' for Celsius
+            const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherKEY}&units=metric`; // 'units=metric' for celsius
             const weatherResponse = await axios.get(weatherURL);
 
             const weather = weatherResponse.data.weather[0].description;
@@ -37,7 +35,6 @@ module.exports = {
             const pressure = weatherResponse.data.main.pressure;
             const iconCode = weatherResponse.data.weather[0].icon;
 
-            // Construct the weather icon URL
             const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
             const weatherEmbed = new EmbedBuilder()
