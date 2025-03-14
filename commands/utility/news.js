@@ -59,7 +59,7 @@ async function sendNewsAutomatically(client, channelId) {
     const channel = await client.channels.fetch(channelId);
     if (!channel) return console.error('Channel not found!');
 
-    const categories = ['Software', 'Data Science', 'Cybersecurity', 'Artificial Intelligence', 'Football', 'Anime', 'Danmark', 'Programming', 'Naruto'];
+    const categories = ['Software Engineering', 'Data Science', 'Cybersecurity', 'Artificial Intelligence', 'Denmark'];
     for (const category of categories) {
         try {
             const news = await fetchNews(category);
