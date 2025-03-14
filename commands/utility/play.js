@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 // const { token } = require('../../config.json');
-require('dotenv').config({ path: './.env' });
+require('dotenv').config();
 const token = process.env.DISCORD_TOKEN;
 const play = require('play-dl');
 const ffmpeg = require('ffmpeg-static');
@@ -61,7 +61,7 @@ const playNext = () => {
 
 // handles commands
 client.on("messageCreate", async (message) => {
-    if (!message.content.startsWith("!")) return;
+    if (message.author.bot || !message.content.startsWith("!")) return;
 
     const args = message.content.split(" ");
     const command = args[0].toLowerCase();
