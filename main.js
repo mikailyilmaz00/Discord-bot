@@ -63,12 +63,34 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.content) {
-        console.log('Message content:', message.content); 
-        console.log('Channel ID:', message.channel.id);    
-        if (message.channel.id === foodChannelId) {
-            await listenToMessages(message); // listen for messages only in the correct channel
-        }
+    if (message.author.bot || !message.content.startsWith("!")) return;
+
+    const args = message.content.slice(1).split(" ");
+    const command = args.shift().toLowerCase();
+
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel && ['play', 'skip', 'pause', 'resume', 'stop', 'queue', 'remove', 'clear', 'volume', 'volup', 'voldown'].includes(command)) {
+        return message.reply("⚠️ You have to join a voice channel!");
+    }
+
+    switch (command) {
+        case 'play':
+        case 'skip':
+        case 'pause':
+        case 'resume':
+        case 'stop':
+        case 'queue':
+        case 'remove':
+        case 'clear':
+        case 'volume':
+        case 'volup':
+        case 'voldown':
+            const playCommand = require('./commands/utility/play');
+            await playCommand.execute(message, args);
+            break;
+        default:
+            message.reply("⚠️ Unknown command.");
+            break;
     }
 });
 
