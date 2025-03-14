@@ -20,7 +20,7 @@ module.exports = {
                     { name: 'news', value: 'news' },
                     { name: 'pause', value: 'pause' },
                     { name: 'play', value: 'play' },
-                    { name: 'ping', value: 'ping' },
+                    // { name: 'ping', value: 'ping' },
                     { name: 'queue', value: 'queue' },
 					{ name: 'quiz', value: 'quiz' },
                     { name: 'recipe', value: 'recipe' },
@@ -266,7 +266,7 @@ For detailed information about a command, use: /guide <command>.
 
             },
             user: {
-                title: 'user',
+                title: 'quiz',
                 description: `
 The \`quiz\` command is a question about the creator of Borobot.
 **Arguments**
@@ -279,7 +279,7 @@ For detailed information about a command, use: /guide <command>.
 
             },
             user: {
-                title: 'user',
+                title: 'magic8ball',
                 description: `
 The \`magic8ball\` command makes Borobot answer your question.
 **Arguments**
@@ -292,7 +292,7 @@ For detailed information about a command, use: /guide <command>.
 
             },
             user: {
-                title: 'user',
+                title: 'sayings',
                 description: `
 The \`sayings\` command gives you a random joke, fact or quote.
 **Arguments**
@@ -306,7 +306,7 @@ For detailed information about a command, use: /guide <command>.
 
             },
             user: {
-                title: 'user',
+                title: 'spin',
                 description: `
 The \`spin\` command lets Borobot spin the wheel for you with an immidiate answer.
 **Arguments**
@@ -319,7 +319,7 @@ For detailed information about a command, use: /guide <command>.
 
 },
 user: {
-	title: 'user',
+	title: 'exchange',
 	description: `
 The \`exchange\` command allows users to convert currencies easily.
 **Arguments**
@@ -332,7 +332,7 @@ For detailed information about a command, use: /guide <command>.
 
 },
 user: {
-	title: 'user',
+	title: 'volume',
 	description: `
 The \`volume\` command sets the volume to a specified level.
 **Arguments**
@@ -345,7 +345,7 @@ For detailed information about a command, use: /guide <command>.
 `
 },
 user: {
-	title: 'user',
+	title: 'volup',
 	description: `
 The \`volup\` command increases the volume of the currently playing audio.
 **Arguments**
@@ -358,7 +358,7 @@ For detailed information about a command, use: /guide <command>.
 `
 },
 user: {
-	title: 'user',
+	title: 'voldown',
 	description: `
 The \`voldown\` command decreases the volume of the currently playing audio.
 **Arguments**
