@@ -1,5 +1,10 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
-const { token, foodChannelId, newsChannelId } = require('./config.json');
+// const { token, foodChannelId, newsChannelId } = require('./config.json');
+require('dotenv').config();
+const token = process.env.DISCORD_TOKEN;
+const foodChannelId = process.env.FOOD_CHANNEL_ID;
+const newsChannelId = process.env.NEWS_CHANNEL_ID;
+
 const fs = require('node:fs');
 const path = require('node:path');
 const { sendNewsAutomatically } = require('./commands/utility/news');
