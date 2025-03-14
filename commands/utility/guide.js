@@ -10,6 +10,7 @@ module.exports = {
                 .setRequired(true)
                 .addChoices(
                     { name: 'clear', value: 'clear' },
+                    { name: 'dbd', value: 'dbd' },
 					{ name: 'exchange', value: 'exchange' },
                     { name: 'echo', value: 'echo' },
                     { name: 'gif', value: 'gif' },
@@ -18,8 +19,8 @@ module.exports = {
                     { name: 'messages', value: 'messages' },
                     { name: 'news', value: 'news' },
                     { name: 'pause', value: 'pause' },
-                    { name: 'ping', value: 'ping' },
                     { name: 'play', value: 'play' },
+                    { name: 'ping', value: 'ping' },
                     { name: 'queue', value: 'queue' },
 					{ name: 'quiz', value: 'quiz' },
                     { name: 'recipe', value: 'recipe' },
@@ -41,15 +42,13 @@ module.exports = {
 
         const commandDescription = {
             ping: {
-                title: 'ping',
+                title: 'dbd',
                 description: `
-Enables or disables the autoplay system.
+The \`dbd\` command allows you to get a randomized or customized perk build in the game, Dead by Daylight.
 **Arguments**
 You don't need to provide any arguments for this command!
 **Requirements**
-Must be in a voice channel
-A music must be currently playing
-Must be in the same voice channel as me
+None
 
 For detailed information about a command, use: /guide <command>.
 `
