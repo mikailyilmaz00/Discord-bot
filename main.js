@@ -1,4 +1,7 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
+require('dotenv').config();
+console.log("DISCORD_TOKEN:", process.env.DISCORD_TOKEN);
+
 // const { token, foodChannelId, newsChannelId } = require('./config.json');
 require('dotenv').config();
 const token = process.env.DISCORD_TOKEN;

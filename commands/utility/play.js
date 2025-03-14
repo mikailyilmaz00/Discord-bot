@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 // const { token } = require('../../config.json');
-require('dotenv').config();
+require('dotenv').config({ path: './.env' });
 const token = process.env.DISCORD_TOKEN;
 const play = require('play-dl');
 const ffmpeg = require('ffmpeg-static');
