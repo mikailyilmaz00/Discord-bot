@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { giphyKEY } = require('../../config.json');
-
+// const { giphyKEY } = require('../../config.json');
+require('dotenv').config();
+const giphyKEY = process.env.GIPHY_KEY;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('gif')

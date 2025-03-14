@@ -1,5 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { NewsKEY } = require('../../config.json');
+// const { NewsKEY } = require('../../config.json');
+require('dotenv').config();
+const NewsKEY = process.env.NEWS_KEY;
+
 
 async function fetchNews(category) {
     const today = new Date();

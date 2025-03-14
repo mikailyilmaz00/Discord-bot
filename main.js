@@ -4,6 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { sendNewsAutomatically } = require('./commands/utility/news');
 const { listenToMessages } = require('./commands/utility/food'); 
+require('dotenv').config();
+
 // const axios = require('axios')
 // const qs = require('qs')
 
@@ -54,18 +56,18 @@ for (const file of eventFiles) {
 
 
 
-// client.login(token);
+client.login(token);
 
-// client.once('ready', () => {
-// 	// console.log(`Ready! Logged in as ${client.user.tag}`)
-// 	const channelId = newsChannelId
+client.once('ready', () => {
+	// console.log(`Ready! Logged in as ${client.user.tag}`)
+	const channelId = newsChannelId
 
-// 	setInterval(() => {
-// 		sendNewsAutomatically(client, channelId)
-// 	}, 3600000);
+	setInterval(() => {
+		sendNewsAutomatically(client, channelId)
+	}, 3600000);
 
-// 	sendNewsAutomatically(client, channelId)
-// });
+	sendNewsAutomatically(client, channelId)
+});
 
 
 

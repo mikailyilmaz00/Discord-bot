@@ -1,5 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { weatherKEY } = require('../../config.json');
+// const { weatherKEY } = require('../../config.json');
+require('dotenv').config();
+const weatherKEY = process.env.WEATHER_KEY;
 const axios = require('axios');
 
 module.exports = {

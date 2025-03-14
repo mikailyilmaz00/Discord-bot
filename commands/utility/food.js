@@ -1,7 +1,10 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { foodKey, foodChannelId } = require('../../config.json');
+// const { foodKey, foodChannelId } = require('../../config.json');
 const axios = require('axios');
-// const qs = require('qs');
+require('dotenv').config();
+const foodKey = process.env.FOOD_KEY;
+const foodChannelId = process.env.FOOD_CHANNEL_ID;
+
 
 const getRecipes = async (query, maxFat = 65, number = 5) => {
   const url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&maxFat=${maxFat}&number=${number}&apiKey=${foodKey}`;

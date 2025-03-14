@@ -1,6 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
-const { exchangeKEY } = require('../../config.json'); // Add your API key to config.json
+// const { exchangeKEY } = require('../../config.json');
+require('dotenv').config();
+const exchangeKEY = process.env.EXCHANGE_KEY;
+
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,7 +30,7 @@ module.exports = {
         const amount = interaction.options.getNumber('amount');
 
         try {
-            // Fetch exchange rate data
+            
             const response = await axios.get(`https://v6.exchangerate-api.com/v6/${exchangeKEY}/latest/${fromCurrency}`);
             const rates = response.data.conversion_rates;
 
@@ -38,7 +41,7 @@ module.exports = {
             const exchangeRate = rates[toCurrency];
             const convertedAmount = (amount * exchangeRate).toFixed(2);
 
-            // Create an embed message
+        
             const exchangeEmbed = new EmbedBuilder()
                 .setTitle('Currency Exchange')
                 .setDescription(`Exchange rate from ${fromCurrency} to ${toCurrency}`)
