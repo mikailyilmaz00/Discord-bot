@@ -59,6 +59,7 @@ const playNext = async (message) => {
         resource.volume.setVolume(volume);
 
         player.play(resource);
+        message.reply(`now playing: ${song}`)
     } catch (error) {
         console.error('Error fetching the song stream:', error);  // debugger for streaming errors
         message.reply("⚠️ There was an error fetching the song. Please try again later.");
@@ -189,9 +190,8 @@ client.on("messageCreate", async (message) => {
 });
 
 player.on(AudioPlayerStatus.Idle, () => {
-    if (currentMessage) {
-    playNext(currentMessage);
-    }
+    playNext(client.channels.cache.get('your-channel-id').lastMessage);
+
 });
 
 client.login(token);
