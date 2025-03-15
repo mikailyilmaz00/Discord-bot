@@ -4,14 +4,13 @@ const token = process.env.DISCORD_TOKEN;
 const play = require('play-dl');
 const ffmpeg = require('ffmpeg-static');
 process.env.FFMPEG_PATH = ffmpeg;
-const { DisTube } = require('distube')
+// const { DisTube } = require('distube')
 
 const { 
     joinVoiceChannel, 
     createAudioPlayer, 
     createAudioResource, 
     AudioPlayerStatus,
-    createAudioResource
 } = require("@discordjs/voice");
 
 
@@ -40,9 +39,11 @@ const setVolume = (newVolume) => {
 client.once("ready", () => {
     console.log("✅ Borobot is online!");
 });
+let currentMessage = null;
 
 // play the next song in the queue
 const playNext = async (message) => {
+    currentMessage = message;
     if (queue.length === 0) {
         if (connection) {
             connection.destroy();
@@ -188,7 +189,9 @@ client.on("messageCreate", async (message) => {
 });
 
 player.on(AudioPlayerStatus.Idle, () => {
-    playNext(message);
+    if (currentMessage) {
+    playNext(currentMessage);
+    }
 });
 
 client.login(token);
