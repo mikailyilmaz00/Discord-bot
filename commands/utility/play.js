@@ -9,8 +9,10 @@ const {
     joinVoiceChannel, 
     createAudioPlayer, 
     createAudioResource, 
-    AudioPlayerStatus 
+    AudioPlayerStatus,
+    createAudioResource
 } = require("@discordjs/voice");
+const ytdl = require("@distube/ytdl-core");
 
 const client = new Client({
     intents: [
@@ -34,6 +36,16 @@ const setVolume = (newVolume) => {
     }
 };
 
+const options = {
+    filter: 'audioonly',
+    highWaterMark: 1 << 25,
+    requestOptions: {
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        }
+    }
+}
+
 client.once("ready", () => {
     console.log("✅ Borobot is online!");
 });
@@ -50,8 +62,8 @@ const playNext = async (message) => {
 
     const song = queue.shift();
     try {
-        const stream = await play.stream(song);
-        const resource = createAudioResource(stream.stream, { inputType: stream.type, inlineVolume: true });
+        const stream = ytdl(song, options);
+        const resource = createAudioResource(stream, { inputType: stream.type, inlineVolume: true });
         resource.volume.setVolume(volume);
 
         player.play(resource);
