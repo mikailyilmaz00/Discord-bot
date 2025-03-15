@@ -54,15 +54,15 @@ for (const file of eventFiles) {
 
 
 
-// client.once('ready', () => {
-//     const channelId = newsChannelId;
+client.once('ready', () => {
+    const channelId = newsChannelId;
 
-//     setInterval(() => {
-//         sendNewsAutomatically(client, channelId);
-//     }, 5900000);
+    setInterval(() => {
+        sendNewsAutomatically(client, channelId);
+    }, 5900000);
 
-//     sendNewsAutomatically(client, channelId);
-// });
+    sendNewsAutomatically(client, channelId);
+});
 
 client.on('messageCreate', async (message) => {
     if (message.content) {
