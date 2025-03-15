@@ -52,7 +52,10 @@ const playNext = () => {
     const song = queue.shift();
     const stream = ytdl(song, { 
         filter: "audioonly",
-        highWaterMark: 1 << 25 });
+        highWaterMark: 1 << 25 }).on('error', (error) => {
+            console.error('Error fetching the song stream:', error);  // debugger for streaming errors
+            message.reply("⚠️ There was an error fetching the song. Please try again later.");
+        });
     const resource = createAudioResource(stream, { inlineVolume: true });
     resource.volume.setVolume(volume);
 
@@ -61,11 +64,13 @@ const playNext = () => {
 
 // handles commands
 client.on("messageCreate", async (message) => {
-    if (message.author.bot || !message.content.startsWith("!")) return;
+    if (!message.content.startsWith("!")) return;
 
     const args = message.content.split(" ");
     const command = args[0].toLowerCase();
     const songName = args.slice(1).join(" ");
+    console.log(`Command: ${command}, Song Name: ${songName}`);  // debug
+
 
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel) {
@@ -86,19 +91,38 @@ client.on("messageCreate", async (message) => {
 
             queue.push(songUrl);
 
+            // if (queue.length === 1 && !connection) {
+            //     message.reply(`🎶 Playing: ${songName}`);
+            //     connection = joinVoiceChannel({
+            //         channelId: voiceChannel.id,
+            //         guildId: message.guild.id,
+            //         adapterCreator: message.guild.voiceAdapterCreator,
+            //     });
+
+            //     connection.subscribe(player);
+            //     playNext();
+            // } else {
+            //     message.reply(`🎶 Added to queue: ${songName}`);
+            // }
+
             if (queue.length === 1 && !connection) {
                 message.reply(`🎶 Playing: ${songName}`);
-                connection = joinVoiceChannel({
-                    channelId: voiceChannel.id,
-                    guildId: message.guild.id,
-                    adapterCreator: message.guild.voiceAdapterCreator,
-                });
-
-                connection.subscribe(player);
-                playNext();
+                try {
+                    connection = joinVoiceChannel({
+                        channelId: voiceChannel.id,
+                        guildId: message.guild.id,
+                        adapterCreator: message.guild.voiceAdapterCreator,
+                    });
+        
+                    connection.subscribe(player);
+                    playNext();
+                } catch (error) {
+                    console.error('Error connecting to the voice channel:', error);
+                    message.reply("⚠️ Could not connect to the voice channel. Please try again later.");
+                }
             } else {
                 message.reply(`🎶 Added to queue: ${songName}`);
-            }
+            }  
             break;
 
         case "!skip":
