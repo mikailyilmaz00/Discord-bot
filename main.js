@@ -63,11 +63,42 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.content) {
-        console.log('Message content:', message.content); 
-        console.log('Channel ID:', message.channel.id);    
-        if (message.channel.id === foodChannelId) {
-            await listenToMessages(message); // listen for messages only in the correct channel
+    if (message.author.bot) return;
+
+    console.log('Message content:', message.content); 
+    console.log('Channel ID:', message.channel.id);
+
+    if (message.channel.id === foodChannelId) {
+        await listenToMessages(message);
+    }
+
+    if (message.content.startsWith("!")) {
+        const args = message.content.slice(1).split(" ");
+        const command = args.shift().toLowerCase();
+
+        const voiceChannel = message.member.voice.channel;
+        if (!voiceChannel && ['play', 'skip', 'pause', 'resume', 'stop', 'queue', 'remove', 'clear', 'volume', 'volup', 'voldown'].includes(command)) {
+            return message.reply("⚠️ You have to join a voice channel!");
+        }
+
+        switch (command) {
+            case 'play':
+            case 'skip':
+            case 'pause':
+            case 'resume':
+            case 'stop':
+            case 'queue':
+            case 'remove':
+            case 'clear':
+            case 'volume':
+            case 'volup':
+            case 'voldown':
+                const playCommand = require('./commands/utility/play');
+                await playCommand.execute(message, args);
+                break;
+            default:
+                message.reply("⚠️ Unknown command.");
+                break;
         }
     }
 });
@@ -84,19 +115,6 @@ client.on('interactionCreate', async interaction => {
     } catch (error) {
         console.error(error);
         await interaction.reply({ content: 'There was an error executing that command!', ephemeral: true });
-    }
-});
-
-
-client.on('messageCreate', (message) => {
-    if (message.author.bot) return;
-
-    if (message.content.startsWith("!play")) {
-        console.log("Playing music...");
-    }
-
-    if (message.content.startsWith("/news")) {
-        console.log("Fetching news...");
     }
 });
 
