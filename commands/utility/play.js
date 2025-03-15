@@ -1,5 +1,4 @@
 const { Client, GatewayIntentBits } = require("discord.js");
-// const { token } = require('../../config.json');
 require('dotenv').config();
 const token = process.env.DISCORD_TOKEN;
 const play = require('play-dl');
@@ -10,10 +9,8 @@ const {
     joinVoiceChannel, 
     createAudioPlayer, 
     createAudioResource, 
-    AudioPlayerStatus, 
-    createAudioResourceOptions 
+    AudioPlayerStatus 
 } = require("@discordjs/voice");
-const ytdl = require("@distube/ytdl-core");
 
 const client = new Client({
     intents: [
@@ -42,24 +39,26 @@ client.once("ready", () => {
 });
 
 // play the next song in the queue
-const playNext = (message) => {
+const playNext = async (message) => {
     if (queue.length === 0) {
-        connection.destroy();
-        connection = null;
+        if (connection) {
+            connection.destroy();
+            connection = null;
+        }
         return;
     }
 
     const song = queue.shift();
-    const stream = ytdl(song, { 
-        filter: "audioonly",
-        highWaterMark: 1 << 25 }).on('error', (error) => {
-            console.error('Error fetching the song stream:', error);  // debugger for streaming errors
-            message.reply("⚠️ There was an error fetching the song. Please try again later.");
-        });
-    const resource = createAudioResource(stream, { inlineVolume: true });
-    resource.volume.setVolume(volume);
+    try {
+        const stream = await play.stream(song);
+        const resource = createAudioResource(stream.stream, { inputType: stream.type, inlineVolume: true });
+        resource.volume.setVolume(volume);
 
-    player.play(resource);
+        player.play(resource);
+    } catch (error) {
+        console.error('Error fetching the song stream:', error);  // debugger for streaming errors
+        message.reply("⚠️ There was an error fetching the song. Please try again later.");
+    }
 };
 
 // handles commands
@@ -69,7 +68,7 @@ client.on("messageCreate", async (message) => {
     const args = message.content.split(" ");
     const command = args[0].toLowerCase();
     const songName = args.slice(1).join(" ");
-     console.log(`Command: ${command}, Song Name: ${songName}`);  // debug
+    console.log(`Command: ${command}, Song Name: ${songName}`);  // debug
 
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel) {
@@ -80,7 +79,7 @@ client.on("messageCreate", async (message) => {
         case "!play":
             let songUrl = songName;
             
-            if (!ytdl.validateURL(songName)) {
+            if (!play.yt_validate(songName)) {
                 const searchResults = await play.search(songName, { limit: 1 });
                 if (searchResults.length === 0) {
                     return message.reply('Could not find a song with that name.');
@@ -99,7 +98,7 @@ client.on("messageCreate", async (message) => {
                 });
 
                 connection.subscribe(player);
-                playNext();
+                playNext(message);
             } else {
                 message.reply(`🎶 Added to queue: ${songName}`);
             }
@@ -108,7 +107,7 @@ client.on("messageCreate", async (message) => {
         case "!skip":
             if (queue.length > 0) {
                 message.reply("⏩ Skipping to the next song in queue!");
-                playNext();
+                playNext(message);
             } else {
                 message.reply("⚠️ No songs in queue.");
             }
@@ -127,8 +126,10 @@ client.on("messageCreate", async (message) => {
         case "!stop":
             queue = [];
             player.stop();
-            connection.destroy();
-            connection = null;
+            if (connection) {
+                connection.destroy();
+                connection = null;
+            }
             message.reply("🛑 Borobot has left the voice channel.");
             break;
 
