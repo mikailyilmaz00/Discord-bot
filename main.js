@@ -52,33 +52,24 @@ for (const file of eventFiles) {
     }
 }
 
-client.once('ready', () => {
-    const channelId = newsChannelId;
-
-    setInterval(() => {
-        sendNewsAutomatically(client, channelId);
-    }, 5900000);
-
-    sendNewsAutomatically(client, channelId);
-});
 
 client.on('messageCreate', async (message) => {
-    if (message.content) {
-        console.log('Message content:', message.content); 
+	if (message.content) {
+		console.log('Message content:', message.content); 
         console.log('Channel ID:', message.channel.id);    
         if (message.channel.id === foodChannelId) {
-            await listenToMessages(message); // listen for messages only in the correct channel
+			await listenToMessages(message); // listen for messages only in the correct channel
         }
     }
 });
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
-
+	
     const command = client.commands.get(interaction.commandName);
 
     if (!command) return;
-
+	
     try {
         await command.execute(interaction);
     } catch (error) {
@@ -87,6 +78,24 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
+function sendNewsAutomatically(client, channelId) {
+    client.channels.fetch(channelId)
+        .then(channel => {
+            channel.send("Her er de nyeste nyheder!");
+        })
+        .catch(console.error);
+}
+
+
+client.once('ready', () => {
+	const channelId = newsChannelId;
+
+	setInterval(() => {
+		sendNewsAutomatically(client, channelId);
+	}, 5900000);
+
+	sendNewsAutomatically(client, channelId);
+});
 
 client.on('messageCreate', (message) => {
     if (message.author.bot) return;
