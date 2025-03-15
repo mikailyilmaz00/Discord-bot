@@ -52,41 +52,24 @@ for (const file of eventFiles) {
     }
 }
 
-client.on('messageCreate', async (message) => {
-    if (message.author.bot) return;
-
-    console.log('Message content:', message.content); 
-    console.log('Channel ID:', message.channel.id);
-
-    if (message.channel.id === foodChannelId) {
-        await listenToMessages(message);
-    }
-
-    if (message.content.startsWith("!play")) {
-        console.log("Playing music...");
-    }
-
-    if (message.content.startsWith("/news")) {
-        console.log("Fetching news...");
-    }
-});
-
-function sendNewsAutomatically(client, channelId) {
-    client.channels.fetch(channelId)
-        .then(channel => {
-            channel.send("Here is the news!");
-        })
-        .catch(console.error);
-}
-
 client.once('ready', () => {
     const channelId = newsChannelId;
 
     setInterval(() => {
         sendNewsAutomatically(client, channelId);
-    }, 5900000);  
+    }, 5900000);
 
     sendNewsAutomatically(client, channelId);
+});
+
+client.on('messageCreate', async (message) => {
+    if (message.content) {
+        console.log('Message content:', message.content); 
+        console.log('Channel ID:', message.channel.id);    
+        if (message.channel.id === foodChannelId) {
+            await listenToMessages(message); // listen for messages only in the correct channel
+        }
+    }
 });
 
 client.on('interactionCreate', async interaction => {
@@ -101,6 +84,19 @@ client.on('interactionCreate', async interaction => {
     } catch (error) {
         console.error(error);
         await interaction.reply({ content: 'There was an error executing that command!', ephemeral: true });
+    }
+});
+
+
+client.on('messageCreate', (message) => {
+    if (message.author.bot) return;
+
+    if (message.content.startsWith("!play")) {
+        console.log("Playing music...");
+    }
+
+    if (message.content.startsWith("/news")) {
+        console.log("Fetching news...");
     }
 });
 
