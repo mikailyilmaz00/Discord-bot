@@ -25,13 +25,13 @@ module.exports = {
 
 
 		if (channel) {
-			await channel.send(input)
-			await interaction.reply({ content: `Message sent to ${channel}`, flags: 64 })
+			await channel.send(input); 
+			await interaction.reply({ content: `Message sent to ${channel}`, ephemeral: true }); // visible only to the user)
 		} else {
 			if (embed) {
-				await interaction.reply({ embeds: [{ description: input, color: 0x00ff00 }] })
+				await interaction.reply({ embeds: [{ description: input, color: 0x00ff00 }] }); 
 			} else {
-				await interaction.reply(input)
+				await interaction.reply(input); // sends a plain text message
 			}
 		}
     }
