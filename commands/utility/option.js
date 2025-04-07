@@ -23,16 +23,21 @@ module.exports = {
 		const channel = interaction.options.getChannel('channel'); // For channel
 		const embed = interaction.options.getBoolean('embed'); // For boolean
 
-
 		if (channel) {
-			await channel.send(input); 
-			await interaction.reply({ content: `Message sent to ${channel}`, ephemeral: true }); // visible only to the user)
-		} else {
-			if (embed) {
-				await interaction.reply({ embeds: [{ description: input, color: 0x00ff00 }] }); 
-			} else {
-				await interaction.reply(input); // sends a plain text message
-			}
-		}
-    }
+            if (embed) {
+                await channel.send({ embeds: [{ description: input, color: 0x00ff00 }] });
+            } else {
+                await channel.send(input);
+            }
+
+            await interaction.reply({ content: `Message sent to ${channel}`, ephemeral: true });
+        } else {
+            // sends the message directly as a reply to the user
+            if (embed) {
+                await interaction.reply({ embeds: [{ description: input, color: 0x00ff00 }] });
+            } else {
+                await interaction.reply(input); // sends a plain text message
+            }
+        }
+}
 }
