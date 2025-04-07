@@ -30,7 +30,7 @@ module.exports = {
                 await channel.send(input);
             }
 
-            await interaction.reply({ content: `Message sent to ${channel}`, ephemeral: true });
+            // await interaction.reply({ content: `Message sent to ${channel}`, ephemeral: true });
        
 }
 	}
