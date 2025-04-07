@@ -265,7 +265,7 @@ For detailed information about a command, use: /guide <command>.
 `
 
             },
-            user: {
+            quiz: {
                 title: 'quiz',
                 description: `
 The \`quiz\` command is a question about the creator of Borobot.
@@ -278,7 +278,7 @@ For detailed information about a command, use: /guide <command>.
 `
 
             },
-            user: {
+            magic8ball: {
                 title: 'magic8ball',
                 description: `
 The \`magic8ball\` command makes Borobot answer your question.
@@ -291,7 +291,7 @@ For detailed information about a command, use: /guide <command>.
 `
 
             },
-            user: {
+            sayings: {
                 title: 'sayings',
                 description: `
 The \`sayings\` command gives you a random joke, fact or quote.
@@ -305,7 +305,7 @@ For detailed information about a command, use: /guide <command>.
 
 
             },
-            user: {
+            spin: {
                 title: 'spin',
                 description: `
 The \`spin\` command lets Borobot spin the wheel for you with an immidiate answer.
@@ -317,10 +317,10 @@ None
 For detailed information about a command, use: /guide <command>.
 `
 
-},
-user: {
-	title: 'exchange',
-	description: `
+            },
+            exchange: {
+	            title: 'exchange',
+	            description: `
 The \`exchange\` command allows users to convert currencies easily.
 **Arguments**
 You don't need to provide any arguments for this command!
@@ -330,10 +330,10 @@ None
 For detailed information about a command, use: /guide <command>.
 `
 
-},
-user: {
-	title: 'volume',
-	description: `
+            },
+            volume: {
+	            title: 'volume',
+	            description: `
 The \`volume\` command sets the volume to a specified level.
 **Arguments**
 Level: The desired volume level (0-200).
@@ -343,10 +343,10 @@ A music must be currently playing
 
 For detailed information about a command, use: /guide <command>.
 `
-},
-user: {
-	title: 'volup',
-	description: `
+            },
+            volup: {
+	        title: 'volup',
+	        description: `
 The \`volup\` command increases the volume of the currently playing audio.
 **Arguments**
 You don't need to provide any arguments for this command!
@@ -356,10 +356,10 @@ A music must be currently playing
 
 For detailed information about a command, use: /guide <command>.
 `
-},
-user: {
-	title: 'voldown',
-	description: `
+            },
+            user: {
+	        title: 'voldown',
+	        description: `
 The \`voldown\` command decreases the volume of the currently playing audio.
 **Arguments**
 You don't need to provide any arguments for this command!
