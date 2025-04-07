@@ -31,13 +31,7 @@ module.exports = {
             }
 
             await interaction.reply({ content: `Message sent to ${channel}`, ephemeral: true });
-        } else {
-            // sends the message directly as a reply to the user
-            if (embed) {
-                await interaction.reply({ embeds: [{ description: input, color: 0x00ff00 }] });
-            } else {
-                await interaction.reply(input); // sends a plain text message
-            }
-        }
+       
 }
+	}
 }
