@@ -30,8 +30,16 @@ module.exports = {
                 await channel.send(input);
             }
 
-            // await interaction.reply({ content: `Message sent to ${channel}`, ephemeral: true });
-       
-}
+          // sends message without sending a visible reply
+            await interaction.deferReply({ ephemeral: true });
+            await interaction.deleteReply(); // deletes the ephemeral reply immediately
+        } else {
+            // sends the message directly as a reply to the user
+            if (embed) {
+                await interaction.reply({ embeds: [{ description: input, color: 0x00ff00 }] });
+            } else {
+                await interaction.reply(input); // sends a plain text message
+            }
+        }
 	}
 }
