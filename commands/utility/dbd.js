@@ -6,41 +6,46 @@ const perksCategories = {
           "Guardian", "Camaraderie", "For the People", "Friendly Competition", "Solidarity", "Reassurance", "Moment Of Glory", "Aftercare", "Any Means Necessary", "Appraisal",
             "Autodidact", "Background Player", "Better Than New", "Better Together", "Blood Pact", "Boon: Dark Theory", "Boon: Exponential", "Build to Last", "Ace in the Hole", "Boon: Circle of Healing",
             "Boon: Illumination", "Boon: Shadow Step",  "Borrowed Time", "Botany Knowledge", "Breakout", "Prove Thyself", "Desperate Measures", "Fixated", "Kindred", "Shoulder The Burden", "Streetwise",
-            "Teamwork: Collective Stealth",  "Teamwork: Power of Two", "Vigil",   "Wiretap",
+            "Teamwork: Collective Stealth",  "Teamwork: Power of Two", "Vigil",   "Wiretap", "Come and Get Me!", "Teamwork: Toughen Up", "Duty Of Care"
+
+
         ],
         theHealer: [
           "Self-Care", "Botany Knowledge", "We’ll Make It", "Reassurance", "Boon: Circle of Healing", "Soul Guard",
           "Pharmacy", "Quick Gambit", "Resilience", "Reactive Healing", "Renewal", "Adrenaline", "Autodidact", "Better Than New", "Blood Pact", "Clean Break", "Boon: Circle of Healing",
           "Deadline", "Plot Twist", "Resilience", "Desperate Measures", "Empathic Connection", "Fast Track", "For the People", "Inner Strength", "Leader", "Moment Of Glory",  "No One Left Behind", 
-          "Object of Obsession",  "Resurgence", "Solidarity", "Strength in Shadows",  "Teamwork: Power of Two", "This Is Not Happening", "We're Gonna Live Forever",
+          "Object of Obsession",  "Resurgence", "Solidarity", "Strength in Shadows",  "Teamwork: Power of Two", "This Is Not Happening", "We're Gonna Live Forever", "ONE-TWO-THREE-FOUR!",
+
         ],
         offensiveLoop: [
           "Saboteur", "Deception", "Diversion", "Bite the Bullet", "Blast Mine", "Borrowed Time", "Deliverance", "Smash Hit", "Power Struggle", 
           "Breakout", "Second Wind", "Cut Loose", "Bardic Inspiration", "Plot Twist", "Background Player", "Blood Rush", "Dead Hard", "Lithe", "Balance Landing", "Quick & Quiet", "Spine Chill", "Dance With Me", "Windows Of Opportunity", "Iron Will",
           "Up The Ante", "Streetwise", "Urban Evasion", "Strength in Shadows", "Any Means Necessary", "Champion of Light", "Chemical Trap", "Cut Loose", "Balanced Landing", "Dead Hard",   "Dance With Me",
           "Deception", "Decisive Strike", "Head On", "Finesse", "Lithe",  "Exultation", "Hope",  "Light-Footed", "Lightweight",  "Mettle Of Man",  "Parental Guidance", "Residual Manifest", "Smash Hit", "Sprint Burst",
-          "Urban Evasion", "Windows Of Opportunity", 
+          "Urban Evasion", "Windows Of Opportunity", "Ghost Notes", "Last Stand",
         ],
     
         auraReading: [
           "Dark Sense", "Detective's Hunch", "Empathy", "Clairvoyance", "Open-Handed", "Bond", "Boon: Illumination", "Visionary",
           "Exultation", "Eyes Of Belmont", "Still Sight", "Alert", "Aftercare", "Blood Pact", "Breakdown", "Buckle Up", "Clairvoyance", "Counterforce", "Babysitter",  "Boon: Illumination",  "Counterforce",
           "Detective's Hunch", "Distortion", "Déjà Vu", "Empathic Connection", "Empathy", "Eyes Of Belmont",  "Fogwise", "Inner Focus", "Invocation: Treacherous Crows",  "Hardened", "Left Behind",
-          "Lucky Star",  "No One Left Behind", "Object of Obsession",  "Premonition",  "Quick Gambit", "Rookie Spirit", "Scene Partner", "Spine Chill", "Wake Up!", "Wicked",
+          "Lucky Star",  "No One Left Behind", "Object of Obsession",  "Premonition",  "Quick Gambit", "Rookie Spirit", "Scene Partner", "Spine Chill", "Wake Up!", "Wicked", "Teamwork: Throw Down,",
+          "Rapid Response"
         ],
     
         injuredDownedHooked: [
           "Unbreakable", "Flip-Flop", "Resurgence", "No Mither", "Final Chapter", "Soul Guard", "Breakdown", "Moment Of Glory", "Decisive Strike",
           "This Is Not Happening", "Still Sight", "Buckle Up", "Overcome", "Boil Over", "Boon Exponential", "Buckle Up", "Breakout", "Plot Twist", "Tenacity", "Reassuarance", "Delivarance", "For the People",
           "Kindred", "Iron Will",  "Low Profile", "Lucky Break",  "Lucky Star", "Made For This",  "Mettle Of Man", "No Mither",  "No One Left Behind", "Off the Record", "Overcome",  "Poised", "Potential Energy", "Power Struggle",
-          "Self Preservation", "Slippery Meat", "Up The Ante", 
+          "Self Preservation", "Slippery Meat", "Up The Ante", "Road Life", "Conviction",
 
         ],
         genAndItems: [
           "Deliverance", "Prove Thyself", "Hyperfocus", "Flashbang", "Plunderer's Instinct", "Fast Track", "Resilience", "Empathic Connection", "Blast Mine", "Better Together", "Clairvoyance", "Corrective Action", 
           "Bardic Inspiration", "Calm Spirit",  "Counterforce",   "Deadline", "Resilience", "Mirrored Illusion", "Prove Thyself",  "Detective's Hunch", "Dramaturgy", "Déjà Vu", "Exultation",  "Fogwise",
           "Friendly Competition", "Invocation: Weaving Spiders", "Moment Of Glory", "Overzealous", "Pharmacy",  "Quick Gambit", "Repressed Alliance",  "Wiretap",
-           "Red Herring", "Rookie Spirit", "Scavenger", "Small Game", "Sole Survivor", "Specialist", "Stake Out", "Technician", "This Is Not Happening",
+           "Red Herring", "Rookie Spirit", "Scavenger", "Small Game", "Sole Survivor", "Specialist", "Stake Out", "Technician", "This Is Not Happening", "Apocalyptic Ingenuity", "Do No Harm"
+
         ],
     }
       
