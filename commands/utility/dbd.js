@@ -30,7 +30,7 @@ const perksCategories = {
           "Exultation", "Eyes Of Belmont", "Still Sight", "Alert", "Aftercare", "Blood Pact", "Breakdown", "Buckle Up", "Clairvoyance", "Counterforce", "Babysitter",  "Boon: Illumination",  "Counterforce",
           "Detective's Hunch", "Distortion", "Déjà Vu", "Empathic Connection", "Empathy", "Eyes Of Belmont",  "Fogwise", "Inner Focus", "Invocation: Treacherous Crows",  "Hardened", "Left Behind",
           "Lucky Star",  "No One Left Behind", "Object of Obsession",  "Premonition",  "Quick Gambit", "Rookie Spirit", "Scene Partner", "Spine Chill", "Wake Up!", "Wicked", "Teamwork: Throw Down,",
-          "Rapid Response"
+          "Rapid Response",
         ],
     
         injuredDownedHooked: [
